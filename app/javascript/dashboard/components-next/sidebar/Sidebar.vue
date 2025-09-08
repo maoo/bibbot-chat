@@ -132,6 +132,12 @@ const menuItems = computed(() => {
       },
     },
     {
+      name: 'Bookings',
+      label: 'Bookings',
+      icon: 'i-lucide-calendar-check',
+      to: accountScopedRoute('bookings'),
+    },
+    {
       name: 'Conversation',
       label: t('SIDEBAR.CONVERSATIONS'),
       icon: 'i-lucide-message-circle',
