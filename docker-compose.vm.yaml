@@ -26,7 +26,6 @@ services:
       - cache:/app/tmp/cache
       - bundle:/usr/local/bundle
     depends_on:
-      - postgres
       - redis
       - vite
       - mailhog
@@ -51,7 +50,6 @@ services:
       - cache:/app/tmp/cache
       - bundle:/usr/local/bundle
     depends_on:
-      - postgres
       - redis
       - mailhog
     environment:
