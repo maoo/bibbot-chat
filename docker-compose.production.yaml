@@ -9,6 +9,7 @@ services:
     <<: *base
     depends_on:
       - redis
+    env_file: .env
     ports:
       - '127.0.0.1:8010:3000'
     environment:
