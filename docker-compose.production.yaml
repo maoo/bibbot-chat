@@ -30,7 +30,6 @@ services:
       - INSTALLATION_ENV=docker
     command: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
     restart: always
-    network_mode: host
 
   redis:
     image: redis:alpine
@@ -41,7 +40,6 @@ services:
       - redis_data:/data
     ports:
       - '127.0.0.1:6379:6379'
-    network_mode: host
 
 volumes:
   storage_data:
