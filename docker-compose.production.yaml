@@ -9,7 +9,6 @@ services:
     <<: *base
     depends_on:
       - redis
-    env_file: .env
     ports:
       - '127.0.0.1:8010:3000'
     environment:
@@ -31,6 +30,7 @@ services:
       - INSTALLATION_ENV=docker
     command: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
     restart: always
+
 
   redis:
     image: redis:alpine
