@@ -97,3 +97,6 @@ yarn-debug.log*
 CLAUDE.local.md
 .pnpm-store/**
 .env.production
+
+enterprise/**
+spec/enterprise/**

@@ -7,34 +7,23 @@ export default {
   components: { Frame },
   computed: {
     ...mapGetters({
-      dashboardApps: 'dashboardApps/getRecords',
+      globalConfig: 'globalConfig/get',
     }),
-    bookingApp() {
-      return this.dashboardApps.find(app => app.title === 'Bookings');
-    },
     frameConfig() {
-      const content = this.bookingApp?.content || [];
+      const bibbotBookingUrl = this.globalConfig.bibbotBookingUrl;
+      if (!bibbotBookingUrl) {
+        return [];
+      }
       // Frame.vue expects objects like { type: 'frame', url: 'https://...' }
-      return content.filter(item => item?.type === 'frame' && item?.url);
+      return [{ type: 'frame', url: bibbotBookingUrl }];
     },
   },
   data() {
     return {
       isVisible: false,
-      isFetching: false,
     };
   },
-  async mounted() {
-    if (!this.dashboardApps?.length) {
-      this.isFetching = true;
-      try {
-        await this.$store.dispatch('dashboardApps/get');
-      } catch (e) {
-        // ignore
-      } finally {
-        this.isFetching = false;
-      }
-    }
+  mounted() {
     // Toggle visibility after mount so Frame.vue sets hasOpenedAtleastOnce
     this.$nextTick(() => {
       this.isVisible = true;
@@ -50,7 +39,7 @@ export default {
     </template>
     <div v-else class="w-full h-full flex items-center justify-center text-n-slate-11">
       <span>
-        No Dashboard App titled "Bookings" is configured yet.
+        BIBBOT_BOOKING_URL environment variable is not configured.
       </span>
     </div>
   </section>
